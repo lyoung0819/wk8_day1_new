@@ -494,9 +494,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// No return type\nfunction nameUpper(name:string){\n    return name.toUpperCase();\n}\n\n\nnameUpper('tRavIs')\n\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'TRAVIS'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -515,9 +526,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// No return type\nfunction nameUpper(name:string){\n    name = name.toUpperCase();\n    return name + 2\n}\n\n\nnameUpper('tRavIs')\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'TRAVIS2'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -536,9 +558,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// return type of string\n//syntax:\n// function functionName(param:paramType):returnType{..code to run} \n\nfunction nameUpper(name:string):string{\n    return name.toUpperCase();\n}\n\n\nnameUpper('tRavIs').length\n\n\n\n\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m6\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -557,9 +590,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "\nfunction iceAddition(num1:number, num2:number):string{\n    return `${num1} plus ${num2} equals ${num1 + num2}`\n}\n\niceAddition(4, 5)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'4 plus 5 equals 9'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -578,9 +622,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// Syntax: \n// const functionName = () => {}\n\nconst nameUpper2 = (name:string):string => {\n    return name.toUpperCase();\n}\n\nnameUpper2('Connor');"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'CONNOR'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -599,9 +654,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n"
+                "\nconst iceAdditionArrow = (num1: number, num2: number):string => {\n    return `${num1} plus ${num2} equals ${num1 + num2}`\n}\niceAdditionArrow(4, 6)\n\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'4 plus 6 equals 10'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -613,23 +679,47 @@
         {
             "language": "markdown",
             "source": [
-                "Often our function return nothing, for this we can use the void type.  The term void to represent function without returns is ubiquitous in all languages.\n\nNote: returning `null` or `undefined` statisfies void "
+                "Often our function returns nothing, for this we can use the void type.  The term void to represent function without returns is ubiquitous in all languages.\n\nNote: returning `null` or `undefined` statisfies void "
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "// void means there will be no return type\nconst doSomething = (num: number, exponential: number):void => {\n    console.log(num ** exponential)\n}\n\n// you can do anything BUT use return\n\nlet myVar = doSomething(4, 4)\nconsole.log(myVar); // there is no return to save to a variable, so this will show undefined \n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "256",
+                                "undefined",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "\nconst returnSomething = (name:string):void => {\n    return name.startsWith('A'); // error\n}\n\nreturnSomething('Adonai')\n\n\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33mtrue\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -648,7 +738,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n"
+                "\n/// ----------------"
             ],
             "outputs": []
         },
@@ -683,7 +773,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "// ^^ primitive(not data holding) : null, undefined, boolean, number, string\n// -------------------\n\n// Always try to avoid the any type, but it defeats the point of TypeScript\nlet typeAny: any;\ntypeAny = 123\ntypeAny = 'abc'\ntypeAny = ['hello', 5, true, false]\n"
             ],
             "outputs": []
         },
@@ -704,7 +794,7 @@
         {
             "language": "typescript",
             "source": [
-                ""
+                "// I will not use the any type unless absolutely necessary "
             ],
             "outputs": []
         },
@@ -725,21 +815,28 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n"
+                "let myTuple: [number, string] //this is acting like a Tuple even thought its an array\nmyTuple = [1, 'Blue Nike Shoes']\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "[",
+                                "  \u001b[33m1\u001b[39m,",
+                                "  \u001b[32m'Blue Nike Shoes'\u001b[39m",
+                                "]"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "typescript",
             "source": [
-                "//Error\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "//Error\n"
+                "//Error\nmyTuple = [1, 'Blue Nike Shoes', 'in good condition']"
             ],
             "outputs": []
         },
@@ -760,9 +857,21 @@
         {
             "language": "typescript",
             "source": [
-                "// this works but shouldn't!!!\n"
+                "// this works but shouldn't!!!\nmyTuple.push('in good condition') // This works... It SHOULD NOT, but it is\nconsole.log(myTuple)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 1, 'Blue Nike Shoes', 'in good condition' ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -781,7 +890,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n"
+                "\nlet iceTuple = [true, undefined]"
             ],
             "outputs": []
         },
