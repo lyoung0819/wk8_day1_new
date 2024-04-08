@@ -911,9 +911,21 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "\n// if we don't provide a value, it will take the index \n\n// enum Size{Small, Medium, Large}\n//  console.log(Size.Small); // 0 (because its the 0 index)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "6",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -925,7 +937,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "// enum Size{Small=5, Medium, Large}\n// console.log(Size.Medium) // 6 - it auto-increments!\n"
             ],
             "outputs": []
         },
@@ -946,16 +958,22 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "\nenum Size{Small='S', Medium='M', Large='L'}\nconsole.log(Size.Medium)\n\n// very useful type when you have data reusing over and over and over again like Error Handling! \nenum Errors {Payment='Your payment didnt go through', User='Could not find user of that name'}\nconsole.log(Errors.Payment)\n\n"
             ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "\n\n\n\n\n"
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "M",
+                                "Your payment didnt go through",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -974,9 +992,23 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n"
+                "// New to us with TypeScript\nenum Teams{O='Offense', D='Defense', ST=\"Speacial Teams\"}\nconsole.log(Teams.O)\nconsole.log(Teams.D)\nconsole.log(Teams.ST)\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Offense",
+                                "Defense",
+                                "Speacial Teams",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1009,9 +1041,22 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "// New to us with TypeScript\n\n//Allows different types but it always trying to narrow down what type it is\n\nfunction myUnknownFunction(person:any){\n    person.walk();\n    person.talk();\n}\n\nmyUnknownFunction({'name': 'Travis', 'cool': true})\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "TypeError",
+                                "message": "person.walk is not a function",
+                                "stack": "    at myUnknownFunction (<Cell 110> [6, 10])\n    at <Cell 110> [10, 17]\n    at <Cell 110> [8, 46]\n    at Script.runInContext (node:vm:148:12)\n    at Script.runInNewContext (node:vm:153:17)\n    at Object.runInNewContext (node:vm:309:38)\n    at C (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:113345)\n    at t.execCode (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:114312)\n    at k.<anonymous> (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:142156)\n    at k.emit (node:events:518:28)"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1030,7 +1075,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "function myUnknownFunction(person:unknown){\n    person.walk();\n    person.talk() // aka - we don't know if we can call the talk() method to this unknown type \n}\n// TypeScript is always trying to help you catch errors before you get in the weeds "
             ],
             "outputs": []
         },
@@ -1051,9 +1096,22 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "// Type Guarding is a fancy way of saying if conditionals\n\nclass Person {\n    walk(){\n        console.log(\"I'm Christopher Walking here\")\n    }\n    talk(){\n        console.log(\"Speaking of Christopher Walkin why the heck was he in Dune 2? That was weird right?\")\n    }\n}\n\nfunction myUnknownFunction(person:unknown):void{\n    // now I can do a check aka Type Guarding!\n    if (person instanceof Person){\n        person.walk()\n        person.talk()\n    } else {\n        console.log(\"This is not a person and can neither walk nor talk!\")\n    }\n}\n\n\nlet christopher = new Person()\n\nmyUnknownFunction(christopher)\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "I'm Christopher Walking here",
+                                "Speaking of Christopher Walkin why the heck was he in Dune 2? That was weird right?",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1072,7 +1130,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n"
+                "function iceGuard(value: unknown): number | string | boolean | unknown {\n    if (typeof value === 'number') {\n        return value * value;\n    } else if (typeof value === 'string') {\n        return value.toUpperCase(); \n    } else if (typeof value === 'boolean') {\n        return value ? \"Its on\" : \"Its off\"; \n    } else {\n        return value;\n    }\n}\n"
             ],
             "outputs": []
         },
@@ -1093,7 +1151,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n"
+                "// Never returns \n// Some sort of process happening in the background that never resolves\n\nfunction myNeverFunction(): never {\n    while (true) {\n        console.log(\"Heeeeey what's going on here\")\n    } \n};\n\n// will run over and over and over "
             ],
             "outputs": []
         },
@@ -1121,35 +1179,28 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n//Error because name:string is not part of our shape"
+                "// In TS, you have Primitive Types and Object Types\n\n// TypeScript won't let you keep adding additional key,val pairs\n\nlet student1 = {id:1}\n// student1.name = \"Jean\"\n\n\n//Error because name:string is not part of our shape"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n"
+                "student1.id = 2\n\nlet student2 = {id: 1, name: 'Jean'}\n\nstudent2.name = 'Caleb'"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "let student: { id: number, name: string} // Explicity building my object shape! \n\nstudent = {\n    id: 2,\n    name: 'Otha'\n}"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "//error"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "\n"
+                "// error\nstudent.name = true"
             ],
             "outputs": []
         },
@@ -1170,7 +1221,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "\nlet iceMan: {id:number, name:string, wasFrozen: boolean } = {id:3, name: 'Yetti', wasFrozen:true}\n\n\nlet iceMan2: {id:number, name:string, wasFrozen: boolean } = {id:3, name: 'Yetti', wasFrozen:true} // instead of doing this, we can make custom types!"
             ],
             "outputs": []
         },
@@ -1191,28 +1242,33 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n"
+                "// Making custom types aka the SHAPE of our data!\n\n// // custom type! \n// type Bender = {\n//     id: number,\n//     nation: string,\n//     power: number,\n//     name: string\n// }"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "let katara: Bender = {id: 1, nation: 'water', power: 7, name: 'Katara'}\n// let aang: Bender = {id:2, nation:'air', power:9, name: 'Aang'}\n\n\nconsole.log(aang.id)\naang.pet = 'Appa' // error: not key of 'pet', cannot add\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "2",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "typescript",
             "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
+                "type iceManType = {\n    id: number,\n    name: string,\n    wasFrozen: boolean\n}"
             ],
             "outputs": []
         },
@@ -1254,21 +1310,14 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "// added read-only in front of id\n\n// type Bender = {\n//     readonly id: number,\n//     nation: string,\n//     power: number,\n//     name: string\n// }\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
+                "let iroh: Bender = {id: 3, nation: 'fire', power: 8, name:'Uncle Iroh'}\n\niroh.id = 5 // error - cannot assign 5 to id because id is set as a readonly ! \n"
             ],
             "outputs": []
         },
@@ -1289,23 +1338,28 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// Added optional pet field\n// add '?' to end of key\n\n// type Bender = {\n//     readonly id: number,\n//     nation: string,\n//     power: number,\n//     name: string,\n//     pet?: string\n// }\n\nlet aang: Bender = {id:2, nation:'air', power:9, name: 'Aang', pet: 'Appa'}\nlet zuko: Bender = {id:5, nation:'fire', power:7, name:'Zuko', pet: 'Druk'}\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "console.log(zuko.pet)\n"
             ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "\n"
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Druk",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1324,23 +1378,27 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// finally, we can also add methods to our types!\n\ntype Bender = {\n    readonly id: number,\n    nation: string,\n    power: number,\n    name: string,\n    pet?: string\n    usePower: (power: string) => string // usePower: method that takes in a string, and will return a string\n}; \n\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n"
+                "let toph: Bender = {\n    id:6, \n    nation:'earth', \n    power:8,\n    name: 'Toph',\n    usePower: (power:string) => {\n        return `I will use my ${power} power to defeat you!!!`\n    }\n}\n\ntoph.usePower('rock slicer')\n\n\n\n\n\n"
             ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'I will use my rock slicer power to defeat you!!!'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1359,9 +1417,21 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "\ntype IceShoeType = {\n    readonly id: number,\n    size: number,\n    name: string,\n    wideVersion?: boolean,\n    description: string\n}\n\nlet iceShoe: IceShoeType = {\n    id: 3,\n    size: 7.5,\n    name: 'Vans',\n    description: 'My Checkered Vans. Did they come back in style? Or did they never leave? Who knows...'\n}\n\n\nconsole.log(iceShoe.description)\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "My Checkered Vans. Did they come back in style? Or did they never leave? Who knows...",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1380,28 +1450,21 @@
         {
             "language": "typescript",
             "source": [
-                ""
+                "// When we use the | to assign multiple values \nlet multipleType: string | number"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                ""
+                "multipleType = 'My string!'\nmultipleType = 5"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
+                "multipleType = true //Error\n"
             ],
             "outputs": []
         },
@@ -1422,37 +1485,27 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n"
+                "\nfunction inchesToCM(length: string | number): number {\n    return length * 2.54 // errors!\n}\n\ninchesToCM(12)\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n"
+                "// Using our union types WITH Type Guarding\n\nfunction inchesToCm(length: string | number):number {\n    if (typeof length === 'string'){\n        return parseFloat(length) * 2.54\n    } else {\n        return length * 2.54\n    }\n}\n\ninchesToCm('12')\n"
             ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m30.48\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1471,9 +1524,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n"
+                "// Use Type Guarding to manage what your function does based on different types! \n\n\nfunction ice13(myParam: boolean | string): boolean {\n    if (typeof myParam === 'string'){\n        return myParam.toLowerCase().startsWith('c')\n    } else {\n        return myParam\n    }\n}\n\nice13('cheerios')\nice13(false)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33mfalse\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1492,16 +1556,20 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n"
+                "// Reassuring TypeScript that its going to be ok... xD \n\nfunction doesInclude(arr: string[], target: string | number): boolean { // does this target exist within this array\n    return arr.includes(target) // you have an array full of strings and you want me to search through for a possible number - that won;t work\n}\n\n\n\nfunction doesInclude2(arr: string[], target: string | number): boolean { // does this target exist within this array\n    return arr.includes(target as string) // you have an array full of strings and you want me to search through for a possible number - that won;t work\n}\n\ndoesInclude(['Fire Nation', 'Water Nation', 'Earth Nation'], 'Air Nation')\ndoesInclude(['Fire Nation', 'Water Nation', 'Earth Nation'], 57)"
             ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "\n\n\n\n"
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33mfalse\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1520,16 +1588,28 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "// combine types using '&' to make an intersection type\n\ntype Moveable = {\n    id: number,\n    x: number,\n    y: number,\n    move?: () => void\n}\n\ntype Resizeable = {\n    id: number,\n    width: number,\n    height: number,\n    resize?: ()=>void\n}\n\ntype Component = Moveable & Resizeable"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                ""
+                "let newComponent: Component = {\n    id: 5,\n    x: 10,\n    y: 10,\n    width: 25,\n    height: 15\n}\n\nconsole.log(newComponent.y)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "10",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1548,9 +1628,21 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "type IceUser = {\n    firstName: string,\n    lastName: string,\n    age: number\n}\n\ntype IceCustomer = {\n    cart: string[],\n    address: string\n}\n\ntype IceComplete = IceUser & IceCustomer\n\n\nlet icedOver: IceComplete = {\n    firstName: 'Lexie',\n    lastName: 'Young',\n    age: 27,\n    cart: ['candles', 'blankets'],\n    address: '123 Real Street'\n}\n\nconsole.log(icedOver.age)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "27",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1569,14 +1661,14 @@
         {
             "language": "typescript",
             "source": [
-                "// This is useless\n\n"
+                "// This is useless\n\nlet literalType: 100 // this is saying the tpye literally cannot be anyhting but 100 itself"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "\n"
+                "// literal union types\n\nlet multipleLiteralTypes: 100 | 50 | 25 // aka... it needs to be one of these types\nmultipleLiteralTypes = 75 // error\nmultipleLiteralTypes = 100 // OK"
             ],
             "outputs": []
         },
@@ -1590,42 +1682,7 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "<a id=\"ice16\"></a>\n\n## In-Class Exercise #16"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "Create a Literal type that restricts its values to the 6 main characters from friends.  Ross, Rachel, Joey, Chandler, Pheobe, Monica\n\nUse that type to create a variable for Rachel"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "typescript",
-            "source": [
-                "\n\n\n"
+                "type Color = 'red' | 'blue' | 'green' | 'yellow'\n\nlet myColor: Color = 'green'"
             ],
             "outputs": []
         },
@@ -1667,9 +1724,23 @@
         {
             "language": "typescript",
             "source": [
-                "//Answer\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "//Answer\n\ntype CTStudent = {\n    readonly id: string,\n    name: string,\n    age: number,\n    isTired: boolean,\n    projectsCompleted: string[],\n    pet?: string\n}\n\nlet student01: CTStudent = {\n    id: 'GMK435&g62L00',\n    name: 'John Smith',\n    age: 24,\n    isTired: true,\n    projectsCompleted:[\"HTML Portfolio\", \"Fakebook\", \"Pokemon API Project\", \"Weather Bug\"],\n    pet: 'dog'\n}\n\nlet student02= {\n    id: '6KGS%54GmlY76',\n    name: 'Jenny Hawthorne',\n    age: 28,\n    isTired: false,\n    projectsCompleted:[\"HTML Portfolio\"],\n}\n\nlet student03 = {\n    id: '6KGS%54GmlY76',\n    name: 'Neo',\n    age: 57,\n    isTired: true,\n    projectsCompleted:[\"Matrix\",\"Biological Interface Program\"],\n    pet:'cat'\n}\n\n\nconsole.log(student01.name)\nconsole.log(student02.isTired)\nconsole.log(student03.pet)\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "John Smith",
+                                "false",
+                                "cat",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1688,9 +1759,22 @@
         {
             "language": "typescript",
             "source": [
-                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\nlet eaten:Fruit=null\n\n//Answer"
+                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\n//let eaten:Fruit=null\n\nlet eaten2 = null\n\n//Answer\n\nfunction fruitFunc (param1: Fruit | null) {\n    if (typeof param1 === Fruit){\n        return param1?.color\n    } else if (typeof param1 === null) {\n        return 'You ate my fruit already'\n\n    };\n}\n\nfruitFunc(apple)\nfruitFunc(eaten2)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "ReferenceError",
+                                "message": "Fruit is not defined",
+                                "stack": "    at fruitFunc (<Cell 192> [17, 15])\n    at <Cell 192> [22, 0]\n    at <Cell 192> [16, 46]\n    at Script.runInContext (node:vm:148:12)\n    at Script.runInNewContext (node:vm:153:17)\n    at Object.runInNewContext (node:vm:309:38)\n    at C (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:113345)\n    at t.execCode (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:114312)\n    at k.<anonymous> (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:142156)\n    at k.emit (node:events:518:28)"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1709,9 +1793,21 @@
         {
             "language": "typescript",
             "source": [
-                "//Given \ntype Book={\n    isbn:string,\n    title:string,\n    author:string\n}\n\ntype DigitalBook={\n    fileType:string,\n}\n\n//Answer\n"
+                "//Given \ntype Book={\n    isbn:string,\n    title:string,\n    author:string\n}\n\ntype DigitalBook={\n    fileType:string,\n}\n\n//Answer\n\ntype EBook= Book & DigitalBook\n\nlet book1: EBook = {\n    isbn: 'hello',\n    title: 'world',\n    author: 'Jane Doe',\n    fileType: 'exe'\n}\n\nconsole.log(book1.title)"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "world",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -1730,9 +1826,23 @@
         {
             "language": "typescript",
             "source": [
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                "\nenum Category{Shirt='Tops', Shoes='Shoe', Pants='Bottoms', Hats='Hat'}\n\ntype ShopItem = {\n    readonly id: number,\n    price: number,\n    description: string,\n    color?: string,\n    category: Category,\n    keywords: string[]\n};\n\n\n\nlet item1: ShopItem = {\n    id: 1,\n    price: 5.99,\n    description: 'Hat',\n    color: 'Blue',\n    category: Category.Hats,\n    keywords: ['blue', 'hat', 'dodgers', 'baseball']\n}\n\n\nlet item2: ShopItem = {\n    id: 2,\n    price: 15.99,\n    description: 'Shirt',\n    color: 'Red',\n    category: Category.Shirt,\n    keywords: ['red', 'women\\'s', 'hockey', 'red wings']\n}\n\nlet item3: ShopItem = {\n    id: 3,\n    price: 25.99,\n    description: 'Pants',\n    color: 'Brown',\n    category: Category.Pants,\n    keywords: ['brown', 'men\\'s', 'pants']\n}\n\n\nconsole.log(item1.description)\nconsole.log(item2.price)\nconsole.log(item3.category)\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hat",
+                                "15.99",
+                                "Bottoms",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
