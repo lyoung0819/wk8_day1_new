@@ -1759,18 +1759,16 @@
         {
             "language": "typescript",
             "source": [
-                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\n//let eaten:Fruit=null\n\nlet eaten2 = null\n\n//Answer\n\nfunction fruitFunc (param1: Fruit | null) {\n    if (typeof param1 === Fruit){\n        return param1?.color\n    } else if (typeof param1 === null) {\n        return 'You ate my fruit already'\n\n    };\n}\n\nfruitFunc(apple)\nfruitFunc(eaten2)"
+                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\n//let eaten:Fruit=null\n\nlet eaten2 = null\n\n//Answer\n\nfunction fruitFunc (param1: Fruit | null) {\n    if (param1){\n        return param1?.color\n    } else {\n        return 'You ate my fruit already'\n    };\n}\n\nfruitFunc(apple)\nfruitFunc(eaten2)"
             ],
             "outputs": [
                 {
                     "items": [
                         {
-                            "mime": "application/vnd.code.notebook.error",
-                            "value": {
-                                "name": "ReferenceError",
-                                "message": "Fruit is not defined",
-                                "stack": "    at fruitFunc (<Cell 192> [17, 15])\n    at <Cell 192> [22, 0]\n    at <Cell 192> [16, 46]\n    at Script.runInContext (node:vm:148:12)\n    at Script.runInNewContext (node:vm:153:17)\n    at Object.runInNewContext (node:vm:309:38)\n    at C (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:113345)\n    at t.execCode (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:114312)\n    at k.<anonymous> (/Users/alexandriayoung/.vscode/extensions/donjayamanne.typescript-notebook-2.0.6/out/extension/server/index.js:2:142156)\n    at k.emit (node:events:518:28)"
-                            }
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'You ate my fruit already'\u001b[39m"
+                            ]
                         }
                     ]
                 }
