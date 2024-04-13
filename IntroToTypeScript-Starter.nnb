@@ -1724,7 +1724,7 @@
         {
             "language": "typescript",
             "source": [
-                "//Answer\n\ntype CTStudent = {\n    readonly id: string,\n    name: string,\n    age: number,\n    isTired: boolean,\n    projectsCompleted: string[],\n    pet?: string\n}\n\nlet student01: CTStudent = {\n    id: 'GMK435&g62L00',\n    name: 'John Smith',\n    age: 24,\n    isTired: true,\n    projectsCompleted:[\"HTML Portfolio\", \"Fakebook\", \"Pokemon API Project\", \"Weather Bug\"],\n    pet: 'dog'\n}\n\nlet student02= {\n    id: '6KGS%54GmlY76',\n    name: 'Jenny Hawthorne',\n    age: 28,\n    isTired: false,\n    projectsCompleted:[\"HTML Portfolio\"],\n}\n\nlet student03 = {\n    id: '6KGS%54GmlY76',\n    name: 'Neo',\n    age: 57,\n    isTired: true,\n    projectsCompleted:[\"Matrix\",\"Biological Interface Program\"],\n    pet:'cat'\n}\n\n\nconsole.log(student01.name)\nconsole.log(student02.isTired)\nconsole.log(student03.pet)\n"
+                "//Answer\n\ntype CTStudent = {\n    readonly id: string,\n    name: string,\n    age: number,\n    isTired: boolean,\n    projectsCompleted: string[],\n    pet?: string\n}\n\nlet student01: CTStudent = {\n    id: 'GMK435&g62L00',\n    name: 'John Smith',\n    age: 24,\n    isTired: true,\n    projectsCompleted:[\"HTML Portfolio\", \"Fakebook\", \"Pokemon API Project\", \"Weather Bug\"],\n    pet: 'dog'\n}\n\nlet student02: CTStudent = {\n    id: '6KGS%54GmlY76',\n    name: 'Jenny Hawthorne',\n    age: 28,\n    isTired: false,\n    projectsCompleted:[\"HTML Portfolio\"],\n}\n\nlet student03: CTStudent = {\n    id: '6KGS%54GmlY76',\n    name: 'Neo',\n    age: 57,\n    isTired: true,\n    projectsCompleted:[\"Matrix\",\"Biological Interface Program\"],\n    pet:'cat'\n}\n\n\nconsole.log(student01.name)\nconsole.log(student02.isTired)\nconsole.log(student03.pet)\n"
             ],
             "outputs": [
                 {
@@ -1759,7 +1759,7 @@
         {
             "language": "typescript",
             "source": [
-                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\n//let eaten:Fruit=null\n\nlet eaten2 = null\n\n//Answer\n\nfunction fruitFunc (param1: Fruit | null) {\n    if (param1){\n        return param1?.color\n    } else {\n        return 'You ate my fruit already'\n    };\n}\n\nfruitFunc(apple)\nfruitFunc(eaten2)"
+                "//Given\ntype Fruit={\n    color:string,\n    shape:string\n}\n\nlet apple:Fruit={color:\"red\", shape:\"sphere\"}\n//let eaten:Fruit=null\n\nlet eaten2 = null\n\n//Answer\n\nfunction fruitFunc (param1: Fruit | null) {\n    if (param1?.color){\n        return param1?.color\n    } else {\n        return 'You ate my fruit already'\n    };\n}\n\n// fruitFunc(apple)\nfruitFunc(eaten2)"
             ],
             "outputs": [
                 {
